@@ -1,0 +1,130 @@
+{
+    "name": "yae-companion",
+    "displayName": "八重神子工作陪伴",
+    "description": "让鸣神大社宫司八重神子陪伴你的 VS Code 编程之旅——优雅毒舌、轻小说审稿、番茄钟与狐火灵感",
+    "version": "0.1.0",
+    "publisher": "yae-studio",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/westsmiles2405/yae-skill.git"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "yae-companion",
+                    "title": "神子",
+                    "icon": "media/yae-icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "yae-companion": [
+                {
+                    "type": "webview",
+                    "id": "yae.chatPanel",
+                    "name": "神子的鸣神案台",
+                    "icon": "media/yae-icon.svg"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "yae.openStage",
+                "title": "神子：今日开卷",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.startPomodoro",
+                "title": "神子：开始番茄钟",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.stopPomodoro",
+                "title": "神子：结束番茄钟",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.encourageMe",
+                "title": "神子：给我一点建议",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.reviewWork",
+                "title": "神子：审稿式检查代码",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.finale",
+                "title": "神子：今日收卷",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.editorial",
+                "title": "神子：总编点评",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.plotTwist",
+                "title": "神子：来个小说反转",
+                "category": "Yae"
+            },
+            {
+                "command": "yae.raiden",
+                "title": "神子：聊聊影",
+                "category": "Yae"
+            }
+        ],
+        "configuration": {
+            "title": "八重神子工作陪伴",
+            "properties": {
+                "yae.pomodoroMinutes": {
+                    "type": "number",
+                    "default": 25,
+                    "description": "番茄钟专注时长（分钟）"
+                },
+                "yae.breakMinutes": {
+                    "type": "number",
+                    "default": 5,
+                    "description": "休息时长（分钟）"
+                },
+                "yae.enableIdleReminder": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "闲置提醒开关"
+                },
+                "yae.idleMinutes": {
+                    "type": "number",
+                    "default": 30,
+                    "description": "闲置多少分钟后提醒"
+                },
+                "yae.enableStatusBar": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "状态栏显示"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "@types/vscode": "^1.85.0",
+        "typescript": "^5.3.3"
+    }
+}
