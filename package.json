@@ -5,6 +5,7 @@
     "version": "0.1.0",
     "publisher": "yae-studio",
     "license": "MIT",
+    "icon": "media/yae-icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/westsmiles2405/yae-skill.git"
