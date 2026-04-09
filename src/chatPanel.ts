@@ -95,10 +95,10 @@ export class YaeChatPanel implements vscode.WebviewViewProvider {
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style nonce="${nonce}">
 :root {
-  --primary: #8e44ad;
-  --primary-light: #d291ff;
-  --accent: #f8b7d4;
-  --fox: #ffb5e8;
+  --yae-purple: #8e44ad;
+  --yae-purple-light: #d291ff;
+  --yae-pink: #f8b7d4;
+  --yae-fox: #ffb5e8;
   --bg: var(--vscode-sideBar-background, #1e1e1e);
   --fg: var(--vscode-sideBar-foreground, #d4d4d4);
   --border: var(--vscode-input-border, #555);
@@ -112,8 +112,8 @@ body {
   background: var(--bg); color: var(--fg);
   display: flex; flex-direction: column; height: 100vh; overflow: hidden;
 }
-#header { text-align: center; padding: 10px 8px 6px; border-bottom: 2px solid var(--primary); }
-#header h2 { color: var(--primary-light); font-size: 15px; }
+#header { text-align: center; padding: 10px 8px 6px; border-bottom: 2px solid var(--yae-purple); }
+#header h2 { color: var(--yae-purple-light); font-size: 15px; }
 #header small { opacity: 0.65; font-size: 11px; }
 #stats-bar {
   display: flex; justify-content: space-around; padding: 4px 8px; font-size: 11px;
@@ -129,18 +129,18 @@ body {
   width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 16px; flex-shrink: 0;
 }
-.msg.yae .avatar { background: var(--primary); }
-.msg.user .avatar { background: var(--fox); }
+.msg.yae .avatar { background: var(--yae-purple); }
+.msg.user .avatar { background: var(--yae-fox); }
 .bubble {
   padding: 6px 10px; border-radius: 10px; white-space: pre-wrap; word-break: break-word; line-height: 1.5;
 }
-.msg.yae .bubble { background: #31163b; border: 1px solid var(--primary); }
-.msg.user .bubble { background: #42273f; border: 1px solid var(--fox); }
+.msg.yae .bubble { background: #31163b; border: 1px solid var(--yae-purple); }
+.msg.user .bubble { background: #42273f; border: 1px solid var(--yae-fox); }
 .name { font-size: 10px; opacity: 0.6; margin-bottom: 2px; }
-.msg.yae .name { color: var(--accent); }
-.msg.user .name { color: var(--fox); text-align: right; }
+.msg.yae .name { color: var(--yae-pink); }
+.msg.user .name { color: var(--yae-fox); text-align: right; }
 .cursor-blink {
-  display: inline-block; width: 2px; height: 1em; background: var(--accent); margin-left: 1px;
+  display: inline-block; width: 2px; height: 1em; background: var(--yae-pink); margin-left: 1px;
   animation: blink 0.6s step-end infinite; vertical-align: text-bottom;
 }
 #input-area { display: flex; padding: 6px 8px; gap: 4px; border-top: 1px solid var(--border); }
@@ -149,9 +149,9 @@ body {
   border-radius: 4px; padding: 5px 8px; outline: none; font-size: 13px;
 }
 #input-area button {
-  background: var(--primary); border: none; color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer;
+  background: var(--yae-purple); border: none; color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer;
 }
-#input-area button:hover { background: var(--primary-light); }
+#input-area button:hover { background: var(--yae-purple-light); }
 @keyframes blink { 50% { opacity: 0; } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 </style>
