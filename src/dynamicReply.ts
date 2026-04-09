@@ -9,10 +9,12 @@ import {
     getEncourageLine,
     getPlotTwist,
     getRaidenEasterEgg,
+    getSolemnComfort,
     getTimeBasedGreeting,
     getWorkLine,
 } from './persona';
 
+const DEEP_SAD_KEYWORDS = ['想死', '活不下去', '没意义', '太痛苦', '撑不住', '不想活', '毫无希望'];
 const SAD_KEYWORDS = ['难过', '伤心', '烦', '累', '焦虑', '失败', '崩溃', '郁闷', '想放弃'];
 const WORK_KEYWORDS = ['代码', '编程', 'bug', 'debug', '重构', '优化', '需求', '测试', '部署'];
 const ENCOURAGE_KEYWORDS = ['加油', '鼓励', '建议', '支持', '没动力', '坚持'];
@@ -23,6 +25,7 @@ const RAIDEN_KEYWORDS = ['影', '雷电将军', '雷电影', '将军'];
 export const CODE_ANALYSIS_KEYWORDS = ['分析', '诊断', '检查代码', '代码质量', '有没有错'];
 
 type Intent =
+    | 'deep_sad'
     | 'sad'
     | 'work'
     | 'encourage'
@@ -34,6 +37,7 @@ type Intent =
 
 function analyzeIntent(text: string): Intent {
     const lower = text.toLowerCase();
+    if (DEEP_SAD_KEYWORDS.some((k) => lower.includes(k))) { return 'deep_sad'; }
     if (EDITORIAL_KEYWORDS.some((k) => lower.includes(k))) { return 'editorial'; }
     if (PLOT_TWIST_KEYWORDS.some((k) => lower.includes(k))) { return 'plot'; }
     if (RAIDEN_KEYWORDS.some((k) => lower.includes(k))) { return 'raiden'; }
@@ -63,6 +67,8 @@ export function generateResponse(userMessage: string): string {
     const info = extractInfo(userMessage);
 
     switch (intent) {
+        case 'deep_sad':
+            return getSolemnComfort();
         case 'sad':
             return info.detail ? `${getComfort()}\n\n${info.detail}` : getComfort();
         case 'encourage':

@@ -7,6 +7,7 @@ import { YaeChatPanel } from './chatPanel';
 import { generateResponse, analyzeCodeProblems, CODE_ANALYSIS_KEYWORDS } from './dynamicReply';
 import { IdleWatcher } from './idleWatcher';
 import {
+    getBreakEnd,
     getBreakRemind,
     getEditorial,
     getEncourageLine,
@@ -87,24 +88,23 @@ export function activate(context: vscode.ExtensionContext): void {
             panel.addBotMessage(getFocusStart(minutes));
             pomodoro.start(
                 minutes,
-                () => { },
                 (phase) => {
-                    if (phase === 'focus-end') {
-                        panel.addBotMessage(getFocusEnd());
-                        stats.recordPomodoro();
-                        panel.updateStats(stats.current);
-                        void vscode.window.showInformationMessage('🦊 神子：这一轮写得还行，先休息一会儿。');
-                        return;
+                    switch (phase) {
+                        case 'focus-end':
+                            panel.addBotMessage(getFocusEnd());
+                            stats.recordPomodoro();
+                            panel.updateStats(stats.current);
+                            void vscode.window.showInformationMessage('🦊 神子：这一轮写得还行，先休息一会儿。');
+                            break;
+                        case 'break-start':
+                            panel.addBotMessage(getBreakRemind());
+                            void vscode.window.showInformationMessage('🦊 神子：休息时间到了，别把脑子写钝了。');
+                            break;
+                        case 'break-end':
+                            panel.addBotMessage(getBreakEnd());
+                            void vscode.window.showInformationMessage('🦊 神子：休息结束，该回来写正篇了。');
+                            break;
                     }
-
-                    if (phase === 'break-start') {
-                        panel.addBotMessage(getBreakRemind());
-                        void vscode.window.showInformationMessage('🦊 神子：休息时间到了，别把脑子写钝了。');
-                        return;
-                    }
-
-                    panel.addBotMessage('休息结束。好了，小家伙，下一章该继续了。');
-                    void vscode.window.showInformationMessage('🦊 神子：休息结束，该回来写正篇了。');
                 },
             );
         }),

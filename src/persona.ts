@@ -92,6 +92,14 @@ const FOCUS_BREAK_REMIND = [
     '短暂离开并不可耻，回来时别把思路忘了就行。',
 ];
 
+const FOCUS_BREAK_END = [
+    '好了，休息够了。回到正文来吧，剧情不会自己写下去。',
+    '差不多了哦。再不回来，我就要替你写结局了。',
+    '休憩结束。把注意力收回来——你的读者在等着呢。',
+    '继续吧。留给偷懒的时间不多了，趁灵感还在。',
+    '行了行了，散步结束。现在该轮到你的脑子出场了。',
+];
+
 const FINALE_LINES = [
     '今日稿件先审到这里。辛苦了，小家伙。',
     '这一天的内容差不多能交差了，剩下的留给明天。',
@@ -182,6 +190,10 @@ export function getBreakRemind(): string {
     return pick(FOCUS_BREAK_REMIND);
 }
 
+export function getBreakEnd(): string {
+    return pick(FOCUS_BREAK_END);
+}
+
 export function getFinale(tasksDone: number): string {
     const base = pick(FINALE_LINES);
     if (tasksDone > 0) {
@@ -204,6 +216,18 @@ export function getPlotTwist(): string {
 
 export function getRaidenEasterEgg(): string {
     return pick(RAIDEN_LINES);
+}
+
+const SOLEMN_COMFORT = [
+    '……好吧，不开玩笑了。说真的——你现在的感受是真实的，别否认它。',
+    '就算你觉得自己在走一条没有结局的线——别忘了，每一本好书，最让人记住的往往是中间最难的那一段。',
+    '你可以不坚强。总编也会有翻不开稿子的时候。',
+    '有些程序没办法一次 debug 干净。你的生活也一样，不用急着一次全修好。',
+    '我平时笑话多，但这一次说的是真心话——你值得被认真对待。',
+];
+
+export function getSolemnComfort(): string {
+    return pick(SOLEMN_COMFORT);
 }
 
 export function getTimeBasedGreeting(): string {

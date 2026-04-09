@@ -20,7 +20,7 @@ export class PomodoroTimer {
         );
     }
 
-    public start(minutes: number, onTick: (text: string) => void, onFinish: (phase: PomodoroPhase) => void): void {
+    public start(minutes: number, onFinish: (phase: PomodoroPhase) => void): void {
         this.stop();
         this.remaining = minutes * 60;
         this.isBreak = false;
@@ -36,7 +36,6 @@ export class PomodoroTimer {
             const display = this.formatTime(this.remaining);
             const prefix = this.isBreak ? '🦊 休憩' : '⚡ 专注';
             this.statusBarItem.text = `${prefix} ${display}`;
-            onTick(`${prefix} ${display}`);
 
             if (this.remaining <= 0) {
                 if (this.isBreak) {
